@@ -45,9 +45,9 @@ app.*.map.json
 /android/app/release
 
 #custom
-/android/
-/ios/
-/macos/
-/linux/
-/web/
-/windows/
+android
+ios
+macos
+linux
+web
+windows
