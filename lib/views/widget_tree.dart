@@ -4,9 +4,7 @@ import 'package:flutter_app/views/pages/home_page.dart';
 import 'package:flutter_app/views/pages/profile_page.dart';
 import 'package:flutter_app/views/widgets/navbar_widget.dart';
 
-List<Widget> pages = [
-  HomePage(), ProfilePage()
-];
+List<Widget> pages = [HomePage(), ProfilePage()];
 
 class WidgetTree extends StatelessWidget {
   const WidgetTree({super.key});
@@ -14,7 +12,25 @@ class WidgetTree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Flutter App'), centerTitle: true),
+      appBar: AppBar(
+        title: Text('Flutter App'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              isDarkModeNotifier.value = !isDarkModeNotifier.value;
+            },
+            icon: ValueListenableBuilder(
+              valueListenable: isDarkModeNotifier,
+              builder: (context, isDarkMode, child) {
+                return isDarkMode
+                    ? Icon(Icons.light_mode)
+                    : Icon(Icons.dark_mode);
+              },
+            ),
+          ),
+        ],
+      ),
       body: ValueListenableBuilder(
         valueListenable: selectedPagesNotifier,
         builder: (context, selectedPage, child) {
